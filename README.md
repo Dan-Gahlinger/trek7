@@ -1,3 +1,4 @@
+<textarea rows="23" cols="73" >
 C=======================================================================
 C                              DONALD ECCLESTONE                       *
 C                                     AND                              *
@@ -21,3 +22,4 @@ C ALL PATCHES/ETC MUST BE APPROVED AND RELEASED VIA OFFICIAL CHANNELS  *
 C ANY AND ALL DERIVITAVE WORKS MUST REMAIN GPL LICENSED AND SOURCE     *
 C CODE FOR ANY/ALL DERIVITAVE WORKS MUST BE RELEASED UNDER GPL         *
 C=======================================================================
+</textarea>
