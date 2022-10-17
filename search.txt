@@ -1,0 +1,4 @@
+"common" (pardon the pun) search parameters.
+developers will soon learn why this is needed ;)
+
+common, nomov, icloz, ipush, ignore, igol, ionno, iplan

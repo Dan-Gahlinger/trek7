@@ -1,0 +1,127 @@
+terminal handling routines (copied from source code and pasted here)
+this should help with conversion (as a reference)
+
+TERMINAL ROUTINES:
+
+105     WRITE(L,104)
+104     FORMAT(' ENTER THE MANUALLY-OPERATED SHIPS YOU WISH BY ENTERING A
+       * STRING CONTAINING-'/' "E" FOR ENTERPRISE, "P" FOR POTEMPKIN
+       *FEDERATION),'/' "H" FOR HAVOC, "C" FOR CARNAGE (KLINGON)')
+        READ(L,332)(IGOM(I),I=1,4)
+332     FORMAT(4A1)
+107     DO 108 I=1,4
+        ICHOE(I)=0
+        DO 108 J=1,4
+        IF(IGOM(J).NE.IEE(I))GO TO 108
+        ICHOE(I)=1
+        ISTAT=ISTAT+1
+108     CONTINUE
+        IF(ISTAT.EQ.0)GO TO 105
+        IF(ISTAT.EQ.1.AND.ICHOE(1).EQ.1)GO TO 111
+        WRITE(L,109)
+c109    FORMAT(' WHEN I STOP TYPING, HIT %C AND ENTER THE FOLLOWING COMMAN
+c       *DS-'/' ASSIGN TTYAA 5'/' ASS TTYBB 6'/' ASS TTYCC 7'/' ASS TTY
+c       *DD E3'/' . CONTINUE'/' <CR>'//' (WHERE AA, BB, CC, DD ARE THE TTY''S
+c       * CONTROLLING THE ENTERPRISE, '/' POTEMPKIN, HAVOC AND CARNAGE RESPE
+c       *CTIVELY)'/' (IF YOU"RE NOT PLAYING SOME OF THE SHIPS, DON"T BOTH
+c       *ER'/' ENTERING THEIR ASSIGN COMMANDS)'/' (IF YOU''VE HAD THE FORES
+c       *IGHT TO DO ALL THIS, JUST HIT <CR>)')
+C                       READ(L,92)NA
+c92                     FORMAT(Al)
+109     format(' It is time to assign terminals to TREK7. To do
+       *this you need to know'/' the device name of the terminals
+       *that you will be using.'/' If you do not know this then
+       *stop the game and find out.'/' To do this type "show term",
+       *the first piece of information is the name of our terminal'/'
+       *for example "TUB1:". Find out the name of all the terminals
+       *'/' and then restart the game.')
+
+c***vax version
+c
+        icnt=5
+        do 926 itom2=1,4
+        if(igom(itom2).eq.'E')goto 921
+        if(igom(itom2).eq.'P')goto 922
+        if(igom(itom2).eq.'H')goto 923
+        if(igom(itom2).eq.'C')qoto 924
+goto 926
+c
+c
+921     write(L,9211)
+9211    format(' If you want the Enterprise to play off of this
+        *terminal then type a blank.'/' Do not type in the name of
+        *this terminal, This causes the game to die.')
+        read(L,9212)(idev(j),j=1,2)
+9212    format(2(a4))
+        if(idev(1).eq.' ')goto 926
+        call assign(5,idev,icnt)
+        goto 926
+c
+c
+
+922  write(L,9221)
+9221 format(' The Potempkin is assigned to terminal ',$)
+     read(L,9222)(idev(j),j=1,2)
+9222 format(2(a4))
+     call assign(6,idev,icnt)
+     goto 926
+
+c
+c
+923  write(L,9231)
+9231 format(' The Havoc is assigned to terminal ',$)
+     read(L,9232)(idev(j),j=1,2)
+9232 format(2(a4))
+     call assign(7,idev,icnt)
+     goto 926
+
+c
+c
+924  write(L,9241)
+9241 format(' The Carnage is assigned to terminal ',$)
+     read(L,9242)(idev(j),j=1,2)
+9242 format(2(a4))
+     call assign(8,idev,icnt)
+
+c
+c
+926  continue
+c
+c
+c
+C***
+
+
+
+RECORD ROUTINES:
+
+
+C -- DONALD ECCLESTONE AND DAN GAHLINGER SUBPROGRAM FOR T R E K 7 --
+C    PORTED TO PC BY: DAN GAHLINGER
+C  - HARLIE
+C
+C THIS ROUTINE DOES THE DATA FILE ACCESS - NOTE FOR CONVERSION
+C
+     SUBROUTINE HARLIE
+     COMMON /W/IDEX(2,33,2)
+     OPEN (UNIT=1,DEVICE='DRA0:',ACCESS='RANDIN',MODE='ASCII',FILE='KIRK.
+    *DAT',DIRECTORY='010011.D.WORK'.RECORD SIZE=80)
+     OPEN(UNIT=2,DEVICE='DRA0:',ACCESS="RANDIN',MODE='ASCII',FILE='KOLOTH
+    *.DAT',DIRECTORY='01011.D.WORK',RECORD SIZE=80)
+     OPEN(UNIT=1,TYPE='OLD',ACCESS='DIRECT',
+    *FORM='FORMATTED',
+    *RECORDTYPE=IFIXED',RECORDSIZE=80,readonly,
+    *ORGANIZATION='RELATIVE',NAME='SYS$USERS:KIRK.DAT')
+     OPEN(UNIT=2,TYPE='OLD',ACCESS='DIRECT',
+    *FORM='FORMATTED',
+    *RECORDTYPE=IFIXED',RECORDSIZE=80,readonly,
+    *ORGANIZATION='RELATIVE',NAME='SYS$USERS:KOLOTH.DAT')
+     DO 1 I=1,33
+        READ(1'I,10)(IDEX(1,I,J),J=1,20)
+1       READ(2'I,10)(IDEX(2,I,J),J=1,20)
+10      FORMAT(20A4)
+c close the files so that some other joe might play
+        close(1)
+        close(2)
+        RETURN
+        END
