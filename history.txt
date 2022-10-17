@@ -1,0 +1,38 @@
+yes the status file is in ugly text, so sue me :)
+
+printout scanned in & ocr'ed
+modules sequences corrected
+all modules now seperated and in correct order
+some white space and garbage correction done
+starting module F (module F is the shortest module)
+module F now cleaned up and corrected - should be finished and OK
+starting module G
+for some silly reason in the middle of module G I just started fixing module A
+module A now cleaned up and corrected - should be finished and OK
+*note: need to check line #s of all modules (not just remaining)
+*note: did major garbage removal of all remaining modules
+module G now cleaned up and corrected - should be finished and OK
+starting module E
+*now at the half-way point as far as cleanup (# of modules)
+module E now cleaned up and corrected - should be finished and OK
+starting module D
+module D is half completed, updated TERM.TXT with clear info
+module D now cleaned up and corrected - should be finished and OK
+starting module C (module C is the largest module)
+about 1/3rd completed module C
+about 1/2 completed module C
+module C now cleaned up and corrected - should be finished and OK
+Last & Final Module remaining - Module B
+starting module B (module B is the second largest module)
+ran f2c (linux) on modules, note the final note of this file, MANY line#s!
+about 1/2 completed module B
+module B now cleaned up and corrected - should be finished and OK
+all modules now aligned correctly (columns)
+***note: need to check & add missing line #s of all modules!
+module C line #s now checked, corrected, added, and finished OK
+many other things done (read code for more)
+code released to GPL, posted to slashdot Aug/2003, still copyright (c) 2003
+
+Dec/2008 - ALL code updated and released, it RUNS folks!
+VMS and Linux versions posted with source and binary. VMS has multiplayer
+but Linux still does not.
